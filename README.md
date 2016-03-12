@@ -28,3 +28,20 @@
         * 5. In a variable of XYZ interface, we can store objects of a class
         * implementing (directly or inheritedly) that interface or it's sub interface.
         */
+        
+        
+        
+         /*
+    * 1. Objects/Instances of abstract classses can't be made.
+    *
+    * 2. Abstract functions have just the signature and not any body.
+    *
+    * 3. A class with even one abstract function has to be declared abstract
+    *
+    * 4. An abstract class can claim to implement an interface without
+    * actually implementing it's functions
+    *
+    * 5. Any child/sub class of abstract class should be either itself declared
+    * abstract or it should implement any unimplemented functions of parent(s).
+    *
+   */
