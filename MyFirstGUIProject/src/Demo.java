@@ -1,74 +1,40 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import abcd.Animal;
+import xyz.Bird;
 
 /**
  * Created by cerebro on 05/03/16.
  */
-public class Demo implements ActionListener {
+public class Demo {
 
-    public static JButton button1;
-    public static JButton button2;
+    // public - access from anywhere
+    // protected - access from same package classes and subclasses of even other packages
+    // default - access from same package classes
+    // private - access from only same class
+
+    // inside static nested class we can't call non static methods of parent class
+    // inside non static nested class we can call non static methods of parent class
+    // using ParentClass.this
 
     public static void main(String[] args) {
+        Animal animal1 = new Animal();
+        Animal animal2 = new Animal();
 
-        JFrame frame1 = new JFrame();
-        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        animal1.setAge(20);
+        animal2.setAge(30);
 
-        //We are making a JPanel and setting it as the main panel of JFrame.
-        JPanel panel1 = new JPanel();
-        Dimension dimension1 = new Dimension(800, 600);
-        panel1.setPreferredSize(dimension1);
-        frame1.setContentPane(panel1);
-        panel1.setBackground(Color.BLUE);
+        System.out.println(animal2.isOlderThan(animal1));
 
+        Animal.StaticNestedClass var1;
+        Animal.NonStaticNestedClass var2;
 
-        JPanel panel2 = new JPanel();
-        panel2.setPreferredSize(new Dimension(50, 590));
-        panel2.setBackground(Color.RED);
+        var1 =  new Animal.StaticNestedClass();
+        var2 =  animal1.new NonStaticNestedClass();
+        Animal.NonStaticNestedClass var3 = animal1.new NonStaticNestedClass();
+        Animal.NonStaticNestedClass var4 = animal2.new NonStaticNestedClass();
 
-        JPanel panel3 = new JPanel();
-        panel3.setPreferredSize(new Dimension(150, 590));
-        panel3.setBackground(Color.GREEN);
-
-        JPanel panel4 = new JPanel();
-        panel4.setPreferredSize(new Dimension(580, 590));
-        panel4.setBackground(Color.YELLOW);
-
-
-        panel1.add(panel2);
-        panel1.add(panel3);
-        panel1.add(panel4);
-
-        Demo.button1 = new JButton("Register at CodeKamp!");
-        panel4.add(Demo.button1);
-        Demo.button1.setForeground(Color.RED);
-
-        Demo demo1 = new Demo();
-        Demo.button1.addActionListener(demo1);
-
-        Demo.button2 = new JButton("Contact Us");
-        panel4.add(Demo.button2);
-        Demo.button2.addActionListener(demo1);
-
-        JLabel label1 = new JLabel("Hi");
-        panel2.add(label1);
-
-        JTextField field1 = new JTextField("hello");
-        panel3.add(field1);
-
-
-        frame1.pack();
-        frame1.setVisible(true);
+        var2.printSomething(); //this var2, Animal.this animal1
+        var3.printSomething(); //this var3, Animal.this animal1
+        var4.printSomething(); //this var4, Animal.this animal2
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == Demo.button1) {
-            System.out.println("Register at CodeKamp button clicked");
-        } else if(e.getSource() == Demo.button2) {
-            System.out.println("Contact Us button clicked");
-        }
-    }
 }
