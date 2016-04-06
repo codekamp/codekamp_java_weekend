@@ -10,14 +10,16 @@ public class Demo implements Runnable {
 
     public static void main(String[] args) {
 
+        http://localhost/phpmyadmin
+
         try {
-            Class.forName("org.sqlite.JDBC");
+            Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            System.out.println("Sqlite JDBC not present. Need to download it.");
+            System.out.println("Mysql JDBC not present. Need to download it.");
         }
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:src/codekamp.sqlite");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/codekamp", "prashant", "mypass");
             Statement stmt = connection.createStatement();
 
             ResultSet resultSet = stmt.executeQuery("SELECT * from students");
@@ -31,9 +33,9 @@ public class Demo implements Runnable {
                 System.out.println("Id: " + id + ", name: " + name + ", email: " + email);
             }
 
-//            stmt = connection.createStatement();
+            stmt = connection.createStatement();
 
-//            stmt.execute("INSERT INTO students (name, email) VALUES ('Bansi Lal', 'bansi@codekamp.in')");
+            stmt.execute("INSERT INTO students (name, email) VALUES ('Bansi Lal', 'bansi@codekamp.in')");
 
         } catch (SQLException e) {
             e.printStackTrace();
